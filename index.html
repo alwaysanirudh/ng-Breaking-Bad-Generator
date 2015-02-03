@@ -1,0 +1,23 @@
+<!doctype html>
+<html ng-app="breakingBad">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script> -->
+    <script src="js/breakingBad.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/breakingBad.css">
+</head>
+<body ng-controller="bbCtrl" ng-keypress="onKeyPress($event)">
+<div>
+    <div class="im-centered">
+        <div class="row">
+            <h1>Type Your Name</h1>
+            <input class="form-control" style="text-align: center" autofocus type="text" ng-model="name">
+        </div>
+        <div class="row">
+            <ng-breaking-bad></ng-breaking-bad>
+        </div>
+    </div>
+</div>
+</body>
+</html>
