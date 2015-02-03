@@ -2,7 +2,8 @@ angular.module('breakingBad', [])
     .controller("bbCtrl", ['$scope', function ($scope) {
         $scope.name = "Breaking Bad";
         $scope.count = 0;
-        // Event handlers
+
+        // Key Press Event handlers
         $scope.onKeyPress = function ($event) {
            switch($event.keyCode) {
                 case 37:
@@ -34,14 +35,14 @@ angular.module('breakingBad', [])
                         var html = "<div id='breaking-bad'><div id='bb-body'>"+
                                        "<div class='name first'>"
                                        +first+
-                                       "</div><div style='clear: both'></div><div class='name last'>"
+                                       "</div><div class='name last'>"
                                        +last+
                                         "</div></div></div>";
-                        element.html(html);
+                        
                     }else{
-                        element.html('');
+                        var html = "<div id='breaking-bad'></div>";
                     }
-                    
+                    element.html(html);
                 });
 
                 // Array of all Elements
@@ -114,10 +115,10 @@ angular.module('breakingBad', [])
 
                 // Genrate the required HTML o/p
                 function generate(text, symbol, imdex){
-                    return "<span class='left'>"+text.slice(0, index)+ "</span>" +
-                           "<img class='element' src='elements/" + symbol + ".png'>" + 
-                           "<span class='right'>" + text.slice(index + symbol.length, text.length) +
-                           "</span>";
+                    return "<div class='left'>"+text.slice(0, index)+ "</div>" +
+                           "<div class='element'><img  src='elements/" + symbol + ".png'/></div>" + 
+                           "<div class='right'>" + text.slice(index + symbol.length, text.length) +
+                           "</div>";
                 }
 
                 //console.log($scope.name);
