@@ -1,14 +1,14 @@
 angular.module('breakingBad', [])
     .controller("bbCtrl", ['$scope', function ($scope) {
         $scope.name = "Breaking Bad";
-        $scope.count = 0;
+        $scope.counter = 0;
         $scope.disabled = true;
 
         $scope.tryAgain = function() {
-                        if($scope.count == 15){
-                            $scope.count = 0;
+                        if($scope.counter == 15){
+                            $scope.counter = 0;
                         } else {
-                            $scope.count++;
+                            $scope.counter++;
                         }
                      }
 
@@ -19,13 +19,13 @@ angular.module('breakingBad', [])
             replace: true,
             link: function (scope, element) {
                 
-                scope.$watch('[name , count]', function () {
+                scope.$watch('[name , counter]', function () {
                     var name = scope.name.replace(/[^a-zA-Z ]/g, '');
                     var names =  name.split(" ");
                     if(names.length >= 2){
                         scope.disabled = false;
-                        var first = breakBad(names[0], scope.count);
-                        var last = breakBad(names[1], scope.count);
+                        var first = breakBad(names[0], scope.counter);
+                        var last = breakBad(names[1], scope.counter);
                         var html = "<div id='breaking-bad'><div id='bb-body'>"+
                                        "<div class='name first'>"
                                        +first+
@@ -35,6 +35,7 @@ angular.module('breakingBad', [])
                         
                     }else{
                         scope.disabled = true;
+                        scope.counter = 0;
                         var html = "<div id='breaking-bad'></div>";
                     }
                     element.html(html);
@@ -95,7 +96,6 @@ angular.module('breakingBad', [])
                         }
 
                         // Yep!
-                        //userElements.push(this._elements[i].name);
                         r = generate(name, elements[i] , index);
                         break;
                     }
