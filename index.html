@@ -6,12 +6,17 @@
     <link href="vendor/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/breakingBad.css">
 </head>
-<body ng-controller="bbCtrl" ng-keypress="onKeyPress($event)">
+<body ng-controller="bbCtrl">
 <div>
     <div class="im-centered">
         <div class="row">
             <h1>Type Your Name</h1>
+        </div>
+        <div class="input-group">
             <input class="form-control" style="text-align: center" autofocus type="text" ng-model="name">
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-disabled="disabled" ng-click='tryAgain()'>Try Again!!</button>
+            </span>
         </div>
         <div class="row">
             <ng-breaking-bad></ng-breaking-bad>

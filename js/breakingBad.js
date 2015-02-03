@@ -2,23 +2,15 @@ angular.module('breakingBad', [])
     .controller("bbCtrl", ['$scope', function ($scope) {
         $scope.name = "Breaking Bad";
         $scope.count = 0;
+        $scope.disabled = true;
 
-        // Key Press Event handlers
-        $scope.onKeyPress = function ($event) {
-           switch($event.keyCode) {
-                case 37:
-                    $scope.count -= 1;
-                    break;
-                case 39:
-                    $scope.count += 1;
-                    break;
-                default:
-                    break;
-            }
-            if($scope.count < 0){
-                $scope.count = 0;
-            }
-        };
+        $scope.tryAgain = function() {
+                        if($scope.count == 15){
+                            $scope.count = 0;
+                        } else {
+                            $scope.count++;
+                        }
+                     }
 
     }])
     .directive('ngBreakingBad', function () {
@@ -28,8 +20,10 @@ angular.module('breakingBad', [])
             link: function (scope, element) {
                 
                 scope.$watch('[name , count]', function () {
-                    var names =  scope.name.split(" ");
+                    var name = scope.name.replace(/[^a-zA-Z ]/g, '');
+                    var names =  name.split(" ");
                     if(names.length >= 2){
+                        scope.disabled = false;
                         var first = breakBad(names[0], scope.count);
                         var last = breakBad(names[1], scope.count);
                         var html = "<div id='breaking-bad'><div id='bb-body'>"+
@@ -40,6 +34,7 @@ angular.module('breakingBad', [])
                                         "</div></div></div>";
                         
                     }else{
+                        scope.disabled = true;
                         var html = "<div id='breaking-bad'></div>";
                     }
                     element.html(html);
